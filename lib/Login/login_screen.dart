@@ -26,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
       _nameController.clear();
     });
   }
-
+//hàm xử lý đăng nhập và đăng ký
   Future<void> _submit() async {
     final email = _emailController.text.trim();
     final password = _passwordController.text.trim();
@@ -102,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  // 🔶 Đăng nhập bằng Google (không dùng google_sign_in)
+  // Đăng nhập bằng Google
   Future<void> _loginWithGoogle() async {
     setState(() => isLoading = true);
     try {
@@ -241,7 +241,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 const SizedBox(height: 18),
 
-                // 🔶 Thêm nút đăng nhập bằng Google
+                // Thêm nút đăng nhập bằng Google
                 if (isLogin) ...[
                   OutlinedButton.icon(
                     onPressed: isLoading ? null : _loginWithGoogle,

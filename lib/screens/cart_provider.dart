@@ -8,10 +8,13 @@ class CartProvider extends ChangeNotifier {
   Map<Food, int> get items => _items;
   Set<Food> get selectedItems => _selectedItems;
 
-  double get totalPrice => _selectedItems.isEmpty
-      ? _items.entries.fold(0, (sum, e) => sum + e.key.price * e.value)
-      : _selectedItems.fold(0, (sum, food) => sum + (food.price * (_items[food] ?? 0)));
-
+  double get totalPrice {
+   if (_selectedItems.isEmpty) return 0;
+   return _selectedItems.fold(0, (sum, food) {
+     final quantity = _items[food] ?? 0;
+     return sum + food.price * quantity;
+   });
+  }
   int get totalItems => _items.values.fold(0, (sum, quantity) => sum + quantity);
 
   void addToCart(Food food) {

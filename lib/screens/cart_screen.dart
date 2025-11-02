@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'cart_provider.dart';
-import 'cart_details.dart'; 
+import 'cart_details.dart';
 
 /// Màn hình hiển thị giỏ hàng
 class CartScreen extends StatelessWidget {
@@ -127,16 +127,21 @@ class CartScreen extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+            // Hiển thị tổng tiền hoặc thông báo chưa chọn món
             Text(
-              'Tổng: ${cart.totalPrice.toStringAsFixed(0)} VNĐ',
+              cart.selectedItems.isEmpty
+                  ? 'Chưa chọn món nào'
+                  : 'Tổng: ${cart.totalPrice.toStringAsFixed(0)} VNĐ',
               style: const TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: Colors.black87,
               ),
             ),
+
+            // 🟢 Nút thanh toán chỉ bật khi có món được chọn
             ElevatedButton(
-              onPressed: cart.items.isEmpty
+              onPressed: cart.selectedItems.isEmpty
                   ? null
                   : () {
                       Navigator.push(
@@ -148,7 +153,8 @@ class CartScreen extends StatelessWidget {
                             onPaymentSuccess: () {
                               cart.clearSelectedItems();
                               ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text('Thanh toán thành công!')),
+                                const SnackBar(
+                                    content: Text('Thanh toán thành công!')),
                               );
                             },
                           ),
@@ -157,8 +163,8 @@ class CartScreen extends StatelessWidget {
                     },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.orange,
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 20, vertical: 10),
               ),
               child: const Text(
                 'Thanh toán',
