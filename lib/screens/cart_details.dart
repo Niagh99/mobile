@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../services/order_service.dart';
-import 'cart_screen.dart';
+import 'cart_provider.dart';
 import '../models/food.dart';
 
 class CartDetailsScreen extends StatefulWidget {

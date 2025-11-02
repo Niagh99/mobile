@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'home.dart';
 import '../services/firebase_service.dart';
 import 'change_password.dart';
+import 'cart_provider.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -31,6 +33,10 @@ class _ProfilePageState extends State<ProfilePage> {
 
   void _logout(BuildContext context) async {
     await _firebaseService.logout();
+
+    // 🧹 Xóa toàn bộ giỏ hàng khi user đăng xuất (dùng Provider)
+    Provider.of<CartProvider>(context, listen: false).clearCart();
+
     hasShownLoginSnackbar = false;
     Navigator.pushReplacementNamed(context, '/login');
   }
@@ -185,8 +191,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         fontSize: 16, fontWeight: FontWeight.w500)),
                 const SizedBox(height: 2),
                 Text(subtitle,
-                    style:
-                        const TextStyle(fontSize: 13, color: Colors.grey)),
+                    style: const TextStyle(fontSize: 13, color: Colors.grey)),
               ],
             ),
           ),
@@ -224,8 +229,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           fontSize: 16, fontWeight: FontWeight.w500)),
                   const SizedBox(height: 2),
                   Text(subtitle,
-                      style:
-                          const TextStyle(fontSize: 13, color: Colors.grey)),
+                      style: const TextStyle(fontSize: 13, color: Colors.grey)),
                 ],
               ),
             ),

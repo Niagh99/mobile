@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/food.dart';
-import '../screens/cart_screen.dart';
+import 'cart_provider.dart';
 
 class Details extends StatelessWidget {
   final Food food;

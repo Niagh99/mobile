@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 class NotificationService {
   static const String oneSignalAppId = '7b2b4268-6b4a-473a-ad35-942c9d6558b8';
   static const String restApiKey =
-      'REST_API_KEY_';
+      'REST_API_KEY';
 
   static Future<void> sendNotificationToAllUsers({
     required String title,

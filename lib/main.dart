@@ -6,9 +6,9 @@ import 'package:provider/provider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'Login/login_screen.dart';
 import 'screens/home.dart';
-import 'screens/cart_screen.dart';
 import 'services/firebase_service.dart'; 
 import 'Admin/AdminHomeScreen.dart'; 
+import '../screens/cart_provider.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 

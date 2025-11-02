@@ -91,7 +91,7 @@ class AdminUserOrdersScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  trailing: Switch(
+                  trailing: Switch( //nút gạt
                     activeColor: Colors.orange,
                     value: isActive,
                     onChanged: (value) async {
@@ -175,7 +175,7 @@ class UserOrdersDetailScreen extends StatelessWidget {
               child: Text('Người dùng này chưa có đơn hàng nào.'),
             );
           }
-
+          //   
           return ListView.builder(
             padding: const EdgeInsets.all(12),
             itemCount: orders.length,
@@ -183,8 +183,8 @@ class UserOrdersDetailScreen extends StatelessWidget {
               final order = orders[index];
               final items = List<Map<String, dynamic>>.from(order['items']);
               final totalPrice = (order['totalPrice'] as num).toDouble();
-
               final createdAtField = order['createdAt'];
+
               DateTime createdAt;
               if (createdAtField is Timestamp) {
                 createdAt = createdAtField.toDate();
@@ -212,13 +212,13 @@ class UserOrdersDetailScreen extends StatelessWidget {
                               fontSize: 18, fontWeight: FontWeight.bold)),
                       const SizedBox(height: 8),
                       Text('🕓 Ngày đặt: $formattedDate'),
-                      Text('📞 SĐT: ${order['phone'] ?? 'Không có'}'),
-                      Text('📍 Địa chỉ: ${order['address'] ?? 'Không có'}'),
+                      Text('📞 SĐT: ${order['phone'] }'),
+                      Text('📍 Địa chỉ: ${order['address'] }'),
                       if (order['note'] != null &&
                           (order['note'] as String).isNotEmpty)
                         Text('📝 Ghi chú: ${order['note']}'),
 
-                      // 🔽 Dropdown thay đổi trạng thái
+                      // Dropdown thay đổi trạng thái
                       Row(
                         children: [
                           const Text('🚚 Trạng thái: ',

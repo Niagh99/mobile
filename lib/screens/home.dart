@@ -10,6 +10,7 @@ import 'order_details.dart';
 import '../services/firebase_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'chat_screen.dart';
+import 'cart_provider.dart';
 
 bool hasShownLoginSnackbar = false;
 
