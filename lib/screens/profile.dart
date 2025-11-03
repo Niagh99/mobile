@@ -34,7 +34,7 @@ class _ProfilePageState extends State<ProfilePage> {
   void _logout(BuildContext context) async {
     await _firebaseService.logout();
 
-    // 🧹 Xóa toàn bộ giỏ hàng khi user đăng xuất (dùng Provider)
+    // Xóa toàn bộ giỏ hàng khi user đăng xuất (dùng Provider)
     Provider.of<CartProvider>(context, listen: false).clearCart();
 
     hasShownLoginSnackbar = false;

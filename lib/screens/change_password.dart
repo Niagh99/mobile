@@ -31,7 +31,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
         .changePassword(_oldPasswordController.text, _newPasswordController.text);
 
     setState(() => _isLoading = false);
-
     if (result['success']) {
       // Thành công
       ScaffoldMessenger.of(context).showSnackBar(
@@ -48,7 +47,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
           _oldPasswordError = 'Mật khẩu cũ không đúng, vui lòng thử lại';
         });
       } else {
-        // Các lỗi khác (ví dụ yếu mật khẩu)
+        // Các lỗi khác
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(result['message']), backgroundColor: Colors.red),
         );

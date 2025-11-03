@@ -82,8 +82,8 @@ class OrderScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 8),
                       Text('🕓 Ngày đặt: $formattedDate'),
-                      Text('📞 SĐT: ${order['phone'] ?? "Không có"}'),
-                      Text('📍 Địa chỉ: ${order['address'] ?? "Không có"}'),
+                      Text('📞 SĐT: ${order['phone']}'),
+                      Text('📍 Địa chỉ: ${order['address']}'),
                       if (order['note'] != null &&
                           (order['note'] as String).isNotEmpty)
                         Text('📝 Ghi chú: ${order['note']}'),

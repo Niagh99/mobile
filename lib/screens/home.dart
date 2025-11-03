@@ -212,7 +212,6 @@ class _FoodListScreenState extends State<FoodListScreen> {
                 position: badge.BadgePosition.topEnd(top: -1, end: -1),
                 child: IconButton(
                   icon: const Icon(Icons.chat_bubble_outline),
-                  tooltip: 'Chat với Admin',
                   onPressed: () async {
                    await FirebaseService().markMessagesAsRead();
                    Navigator.push( context,
@@ -269,8 +268,8 @@ class _FoodListScreenState extends State<FoodListScreen> {
                       value: _sortOption,
                       items: const [
                         DropdownMenuItem(value: 'none', child: Text('Mặc định')),
-                        DropdownMenuItem(value: 'asc', child: Text('Giá lên')),
-                        DropdownMenuItem(value: 'desc', child: Text('Giá xuống')),
+                        DropdownMenuItem(value: 'asc', child: Text('Giá tăng')),
+                        DropdownMenuItem(value: 'desc', child: Text('Giá giảm')),
                       ],
                       onChanged: (value) {
                         setState(() {

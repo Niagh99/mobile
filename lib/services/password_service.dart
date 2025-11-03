@@ -31,7 +31,7 @@ class PasswordService {
       return {'success': true, 'message': 'Đổi mật khẩu thành công!'};
     } on FirebaseAuthException catch (e) {
       String msg = 'Đã xảy ra lỗi';
-      if (e.code == 'wrong-password') {
+      if (e.code == 'wrong-password'|| e.code == 'invalid-credential') {
         msg = 'Mật khẩu cũ không đúng';
       } else if (e.code == 'weak-password') {
         msg = 'Mật khẩu mới quá yếu';
