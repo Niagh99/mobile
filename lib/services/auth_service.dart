@@ -13,7 +13,7 @@ class AuthService {
   User? get currentUser => _auth.currentUser;
   bool get isSignedIn => currentUser != null;
 
-  /// Đăng nhập Google KHÔNG cần google_sign_in
+  /// Đăng nhập Google
   Future<UserCredential> signInWithGoogle() async {
     try {
       final googleProvider = GoogleAuthProvider()

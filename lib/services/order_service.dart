@@ -15,6 +15,7 @@ class OrderService {
       rethrow;
     }
   }
+  
 
   //Lấy danh sách đơn hàng (realtime stream)
   Stream<QuerySnapshot> getAllOrders() {
@@ -57,28 +58,6 @@ class OrderService {
     }
   }
 
-  //Lấy danh sách đơn hàng của người dùng hiện tại
-  Future<List<Map<String, dynamic>>> getUserOrders() async {
-    try {
-      final user = _auth.currentUser;
-      if (user == null) return [];
-
-      final snapshot = await _firestore
-          .collection('orders')
-          .where('userId', isEqualTo: user.uid)
-          .orderBy('createdAt', descending: true)
-          .get();
-
-      return snapshot.docs.map((doc) {
-        final data = doc.data();
-        data['id'] = doc.id;
-        return data;
-      }).toList();
-    } catch (e) {
-      return [];
-    }
-  }
-
   //Stream đơn hàng của người dùng hiện tại (realtime)
   Stream<List<Map<String, dynamic>>> getUserOrdersStream() {
     final user = _auth.currentUser;
@@ -87,19 +66,6 @@ class OrderService {
     return _firestore
         .collection('orders')
         .where('userId', isEqualTo: user.uid)
-        .orderBy('createdAt', descending: true)
-        .snapshots()
-        .map((snapshot) => snapshot.docs.map((doc) {
-              final data = doc.data();
-              data['id'] = doc.id;
-              return data;
-            }).toList());
-  }
-
-  //Stream toàn bộ đơn hàng (realtime)
-  Stream<List<Map<String, dynamic>>> getOrdersStream() {
-    return _firestore
-        .collection('orders')
         .orderBy('createdAt', descending: true)
         .snapshots()
         .map((snapshot) => snapshot.docs.map((doc) {

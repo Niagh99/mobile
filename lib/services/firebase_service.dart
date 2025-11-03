@@ -6,11 +6,11 @@ class FirebaseService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  // UID CỦA ADMIN (THAY BẰNG UID THẬT CỦA BẠN)
+  // UID CỦA ADMIN
   static const String adminId = 'YAKnSu3CCQQM7zaqUbVALoD3pbO2';
 
   // ===========================================================
-  // 🔶 PHẦN SẢN PHẨM
+  // PHẦN SẢN PHẨM
   // ===========================================================
 
   Future<void> addFood(Food food) async {
@@ -58,37 +58,6 @@ class FirebaseService {
     } catch (e) {
       rethrow;
     }
-  }
-
-  // ===========================================================
-  // 🔶 PHẦN DÀNH CHO ADMIN
-  // ===========================================================
-
-  Stream<List<Map<String, dynamic>>> getAllUsersStream() {
-    return _firestore
-        .collection('users')
-        .where('role', isEqualTo: 'user')
-        .snapshots()
-        .map((snapshot) =>
-            snapshot.docs.map((doc) {
-              final data = doc.data();
-              data['uid'] = doc.id;
-              return data;
-            }).toList());
-  }
-
-  Stream<List<Map<String, dynamic>>> getOrdersByUserStream(String userId) {
-    return _firestore
-        .collection('orders')
-        .where('userId', isEqualTo: userId)
-        .orderBy('createdAt', descending: true)
-        .snapshots()
-        .map((snapshot) =>
-            snapshot.docs.map((doc) {
-              final data = doc.data();
-              data['id'] = doc.id;
-              return data;
-            }).toList());
   }
 
   // ===========================================================
@@ -168,7 +137,7 @@ class FirebaseService {
       return null;
     }
   }
-
+// lấy thông tin user theo uid
   Future<Map<String, dynamic>?> getUserData(String uid) async {
     try {
       final doc = await _firestore.collection('users').doc(uid).get();
@@ -177,7 +146,7 @@ class FirebaseService {
       return null;
     }
   }
-
+// lấy thông tin user hiện tại
   Future<Map<String, dynamic>?> getCurrentUserProfile() async {
     try {
       final user = _auth.currentUser;
