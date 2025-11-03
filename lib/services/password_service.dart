@@ -23,7 +23,7 @@ class PasswordService {
       // Đổi mật khẩu trong Firebase Authentication
       await user.updatePassword(newPassword);
 
-      // Cập nhật lại mật khẩu trong Firestore (nếu bạn có lưu trường "password")
+      // Cập nhật lại mật khẩu trong Firestore
       await _firestore.collection('users').doc(user.uid).update({
         'password': newPassword,
       });

@@ -137,16 +137,8 @@ class FirebaseService {
       return null;
     }
   }
-// lấy thông tin user theo uid
-  Future<Map<String, dynamic>?> getUserData(String uid) async {
-    try {
-      final doc = await _firestore.collection('users').doc(uid).get();
-      return doc.data();
-    } catch (e) {
-      return null;
-    }
-  }
-// lấy thông tin user hiện tại
+
+// lấy thông tin user
   Future<Map<String, dynamic>?> getCurrentUserProfile() async {
     try {
       final user = _auth.currentUser;
